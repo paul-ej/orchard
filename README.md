@@ -1,6 +1,6 @@
 # Orchard
 
-An independent Apple troubleshooting knowledge base for GitHub Pages. The repository ships with five reviewed guides and a local importer. It has no live crawler, backend, API key, or Python dependencies.
+An independent Apple troubleshooting knowledge base for GitHub Pages. The repository ships with five reviewed guides and a local importer. The site and review importer run without a backend or API key. The optional collection tool has a separate dependency.
 
 Apple announced that the Apple Support Community would close on 20 November 2026. Apple’s website terms restrict scraping and mirroring. Use local inputs from an authorised export, a licensed collection, or your own original notes. Before relying on an archive, verify its coverage and reuse terms. Keep original posts, handles, screenshots and private inputs outside the public repository. Publish original troubleshooting guides with source links.
 
@@ -41,3 +41,32 @@ Start by tracking selected threads by product, symptom and OS version. Prioritis
 ## Public contributions
 
 Readers can [submit an answer to an unresolved thread](https://paul-ej.dev/orchard/contribute.html). The GitHub issue form records the original thread URL, device and OS, proposed fix, and supporting evidence. See `AGENTS.md` for review and publication.
+
+## Collect Apple Discussions threads
+
+The optional collector runs on macOS or Linux. It can parse a saved thread HTML page without network access. Live collection requires permission from Apple and follows only in-scope public links on `discussions.apple.com`.
+
+```sh
+python3 -m venv .private/collector-env
+source .private/collector-env/bin/activate
+python3 -m pip install -r requirements-collector.txt
+
+# Parse one saved page, keeping the full original HTML separately.
+python3 collect_threads.py parse /path/to/saved-thread.html \
+  --url https://discussions.apple.com/thread/253164152 \
+  --captured-on 2023-09-06 > .private/saved-thread.jsonl
+
+# Run only once Apple has authorised collection. Use your real contact address.
+python3 collect_threads.py crawl --apple-permission --contact you@example.com
+```
+
+Use the same arguments with `add-saved` to store an existing capture and index its outbound links. Live collection starts from Apple’s product sitemap. Repeat `--seed URL` to add known category, thread or listing URLs. The crawler follows rendered links, including linked reply pages. It keeps one worker per index and uses the greater of its configured delay and applicable robots rules. HTTP 429 or 503 checkpoints the queue and stops the run. A rerun honours the saved cooldown. For a longer authorised run, set `--max-pages` to the desired request budget.
+
+```sh
+python3 collect_threads.py export
+python3 kb.py ingest .private/capture/threads.jsonl
+```
+
+`.private/capture/index.sqlite3` records each discovered URL, capture status, HTML snapshot path and parsed record. The export prints counts by status and deduplicates the reported thread count by canonical thread URL. Its JSONL records retain the page URL separately so reply pages can be audited. Each captured HTML file is stored by content hash. Parse failures keep their original HTML for review, and the normal Orchard importer still quarantines unsafe text. Keep all capture output private.
+
+The index measures linked pages discovered by this collector. It cannot establish the site's total thread count. It does not enumerate thread IDs, capture attachments, or fetch replies loaded only by JavaScript. Verify coverage against an authoritative manifest before treating it as complete.
