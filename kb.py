@@ -196,14 +196,24 @@ def page(body):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orchard KB · Apple troubleshooting</title><link rel="stylesheet" href="style.css">
 <script src="search.js" defer></script></head>
-<body><main><header><p class="brand">Orchard KB</p>
+<body>
+<nav class="site-nav" aria-label="Site"><div class="site-nav-inner">
+<a class="brand" href="./">Orchard KB</a>
+<div class="nav-links"><a href="#browse">Browse</a><a href="contribute.html">Answer a thread</a></div>
+</div></nav>
+<main><header class="hero">
 <h1>Apple troubleshooting</h1>
-<p>Independent guides based on community reports and Apple Support documentation.</p>
-<nav aria-label="Site"><a href="contribute.html">Answer an open thread</a></nav>
-<label for="query">Search by symptom, product or error</label>
-<input id="query" type="search" placeholder="Try ‘external display’" autocomplete="off">
-<p id="count" role="status"></p></header>
-""" + body + "</main></body></html>\n"
+<p>Find reviewed answers from Apple Discussions.</p>
+<div class="search-panel">
+<label class="visually-hidden" for="query">Search by symptom, product or error</label>
+<input id="query" type="search" placeholder="Search by symptom, product or error" autocomplete="off">
+</div></header>
+<section id="browse" aria-labelledby="browse-title">
+<div class="section-heading"><h2 id="browse-title">Browse guides</h2><p id="count" role="status"></p></div>
+""" + body + """</section></main>
+<footer><div class="footer-inner">Orchard KB is an independent project. <a href="https://discussions.apple.com/">Original Apple Discussions</a></div></footer>
+</body></html>
+"""
 
 
 def card(article):
@@ -217,12 +227,13 @@ def card(article):
     steps = "".join(f"<li>{escape(step)}</li>" for step in article["steps"])
     return f"""<article id="{article['id']}" data-search="{escape(search_text(article))}">
 <p class="meta">{escape(article['product'])} · Reviewed {escape(article['reviewed_on'])}</p>
-<h2><a href="#{article['id']}">{escape(article['title'])}</a></h2>
+<h3><a href="#{article['id']}">{escape(article['title'])}</a></h3>
 <p>{escape(article['summary'])}</p>
+<details><summary>Read troubleshooting steps and sources</summary>
 <p class="scope"><strong>Applies to</strong> {escape(article['applies_to'])}</p>
 <ol>{steps}</ol>
 <p class="scope">{escape(article['evidence_notes'])}</p>
-<ul class="sources">{''.join(links)}</ul></article>"""
+<ul class="sources">{''.join(links)}</ul></details></article>"""
 
 
 def build(articles):

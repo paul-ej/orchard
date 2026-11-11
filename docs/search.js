@@ -14,3 +14,22 @@ function filterArticles() {
 
 query.addEventListener("input", filterArticles);
 filterArticles();
+
+function openLinkedGuide() {
+  const guide = articles.find(article => location.hash === `#${article.id}`);
+  if (!guide) return;
+  if (guide.hidden) {
+    query.value = "";
+    filterArticles();
+  }
+  guide.querySelector("details").open = true;
+}
+
+for (const guide of articles) {
+  guide.querySelector("h3 a").addEventListener("click", () => {
+    guide.querySelector("details").open = true;
+  });
+}
+
+window.addEventListener("hashchange", openLinkedGuide);
+openLinkedGuide();
