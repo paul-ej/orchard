@@ -69,4 +69,20 @@ python3 kb.py ingest .private/capture/threads.jsonl
 
 `.private/capture/index.sqlite3` records each discovered URL, capture status, HTML snapshot path and parsed record. The export prints counts by status and deduplicates the reported thread count by canonical thread URL. Its JSONL records retain the page URL separately so reply pages can be audited. Each captured HTML file is stored by content hash. Parse failures keep their original HTML for review, and the normal Orchard importer still quarantines unsafe text. Keep all capture output private.
 
-The index measures linked pages discovered by this collector. It cannot establish the site's total thread count. It does not enumerate thread IDs, capture attachments, or fetch replies loaded only by JavaScript. Verify coverage against an authoritative manifest before treating it as complete.
+The index measures linked pages discovered by this collector. It cannot establish the site's total thread count. The HTTP mode does not enumerate thread IDs, capture attachments, or render JavaScript replies. Verify coverage against an authoritative manifest before treating it as complete.
+
+### Capture rendered threads in Chromium
+
+Use this mode when replies are loaded by JavaScript. It uses the same queue, limits, and snapshot index as the HTTP collector. The visible browser uses a fresh session, follows only the queued page for navigation, and fetches permitted same-origin scripts and reply data. It does not sign in. A rate-limit response pauses the run even when it comes from a page resource.
+
+```sh
+python3 -m pip install -r requirements-browser.txt
+python3 -m playwright install chromium
+
+# Run only once Apple has authorised collection.
+python3 collect_threads.py crawl --browser --apple-permission \
+  --contact you@example.com \
+  --seed https://discussions.apple.com/thread/253164152
+```
+
+Existing queued pages are processed before newly added seeds. Add `--refresh` with an explicit `--seed` to capture a page already in the index again. Use `--directory .private/browser-pilot` before `crawl` to try a separate index. The collector saves the rendered HTML, including replies present in the page at capture time. Linked reply pages are queued separately. Attachments and replies behind unvisited interface actions are outside this capture.

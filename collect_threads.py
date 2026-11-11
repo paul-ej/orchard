@@ -1,5 +1,6 @@
 """Collect permitted Apple Discussions pages into Orchard's private import format."""
 import argparse
+from contextlib import contextmanager
 from datetime import date, datetime, timezone
 from email.utils import parsedate_to_datetime
 from hashlib import sha256
@@ -176,9 +177,33 @@ def capture(database, directory, url, raw, captured_on=None):
         )
     except (ValueError, html.etree.ParserError):
         database.execute(
-            "UPDATE pages SET state='parse_failed', snapshot=?, record=NULL, error='Unexpected markup' WHERE url=?",
+            "UPDATE pages SET state='parse_failed', snapshot=?, error='Unexpected markup' WHERE url=?",
             (str(snapshot), url),
         )
+
+
+@contextmanager
+def page_fetcher(args, opener, robots, delay):
+    if not args.browser:
+        def read_http(url):
+            time.sleep(delay)
+            return fetch(opener, url, args.contact, robots)
+        yield read_http
+        return
+
+    try:
+        from browser_capture import BrowserCapture, Error, sync_playwright
+    except ImportError as error:
+        raise URLError("Install requirements-browser.txt to enable browser capture") from error
+    with sync_playwright() as playwright:
+        try:
+            browser = BrowserCapture(playwright, robots, args.contact, delay, HOST, BOT, MAX_BYTES)
+        except Error as error:
+            raise URLError("Chromium could not start. Install it with python3 -m playwright install chromium") from error
+        try:
+            yield browser.fetch
+        finally:
+            browser.close()
 
 
 def crawl(args, database, directory):
@@ -207,17 +232,23 @@ def crawl(args, database, directory):
             if not normalized:
                 raise ValueError("Expected an in-scope Apple Discussions seed")
             queue(database, [normalized])
+            if args.refresh:
+                database.execute("UPDATE pages SET state='queued', error=NULL WHERE url=?", (normalized,))
 
-    for _ in range(args.max_pages):
+    with page_fetcher(args, opener, robots, delay) as read_page:
+        return crawl_queue(database, directory, args.max_pages, read_page)
+
+
+def crawl_queue(database, directory, max_pages, read_page):
+    for _ in range(max_pages):
         row = database.execute(
             "SELECT url FROM pages WHERE state='queued' ORDER BY rowid LIMIT 1"
         ).fetchone()
         if row is None:
             break
         url = row[0]
-        time.sleep(delay)
         try:
-            raw = fetch(opener, url, args.contact, robots)
+            raw = read_page(url)
         except PermissionError:
             with database:
                 database.execute("UPDATE pages SET state='blocked', error='robots.txt' WHERE url=?", (url,))
@@ -248,6 +279,8 @@ def main():
     live.add_argument("--seed", action="append")
     live.add_argument("--delay", type=float, default=5, help="Seconds between requests, minimum 2")
     live.add_argument("--max-pages", type=int, default=100)
+    live.add_argument("--browser", action="store_true", help="Capture rendered HTML in a Chromium window")
+    live.add_argument("--refresh", action="store_true", help="Queue explicit seeds again, including captured pages")
     for command, help_text in (
         ("parse", "Print one saved Apple thread page as JSONL"),
         ("add-saved", "Add a saved Apple thread page to the local capture index"),
@@ -266,6 +299,8 @@ def main():
             print(json.dumps(record, ensure_ascii=False))
             return 0
     if args.command == "crawl":
+        if args.refresh and not args.seed:
+            parser.error("--refresh requires at least one explicit --seed URL")
         if not (2 <= args.delay <= 3600 and args.max_pages > 0):
             parser.error("Use a delay between 2 and 3600 seconds and a positive page limit")
         if not re.fullmatch(r"[^\s()@]+@[^\s()@]+", args.contact) or not args.contact.isascii():
@@ -297,7 +332,8 @@ def run(args):
             return crawl(args, database, args.directory)
         except HTTPError as error:
             if error.code in (429, 503):
-                deadline = retry_at(error.headers.get("Retry-After"))
+                deadline = retry_at(next((value for key, value in error.headers.items()
+                                          if key.lower() == "retry-after"), None))
                 with database:
                     database.execute("INSERT OR REPLACE INTO settings VALUES ('retry_at', ?)", (deadline,))
                 print(f"HTTP {error.code}. Paused until {datetime.fromtimestamp(deadline, timezone.utc).isoformat()}.",
@@ -305,7 +341,10 @@ def run(args):
             else:
                 print(f"HTTP {error.code}. Queue retained.", file=sys.stderr)
             return 2
-        except (URLError, TimeoutError, KeyboardInterrupt):
+        except URLError as error:
+            print(f"{error.reason}. Queue retained.", file=sys.stderr)
+            return 2
+        except (TimeoutError, KeyboardInterrupt):
             print("Collection interrupted. Queue retained.", file=sys.stderr)
             return 2
         finally:
