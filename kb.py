@@ -12,11 +12,11 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent
 THREAD = re.compile(r"/thread/(\d+)/?")
-CONTRIBUTION = re.compile(r"https://github\.com/paul-ej/orchard-kb/issues/[1-9][0-9]*")
+CONTRIBUTION = re.compile(r"https://github\.com/paul-ej/orchard/issues/[1-9][0-9]*")
 SOURCE_LABELS = {
     "community": "Community",
     "official": "Official",
-    "contribution": "Orchard KB contribution",
+    "contribution": "Orchard contribution",
 }
 
 
@@ -171,7 +171,7 @@ def reviewed():
             if source["kind"] == "community":
                 thread_url(source["url"])
             if source["kind"] == "contribution" and not CONTRIBUTION.fullmatch(source["url"]):
-                raise ValueError(f"Expected an Orchard KB contribution issue URL in {path.name}")
+                raise ValueError(f"Expected an Orchard contribution issue URL in {path.name}")
             if source.get("archive_url"):
                 public_url(source["archive_url"])
         public_fields = ("id", "status", "title", "product", "applies_to", "summary",
@@ -194,11 +194,11 @@ def page(body):
     return """<!doctype html>
 <html lang="en-GB"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orchard KB · Apple troubleshooting</title><link rel="stylesheet" href="style.css">
+<title>Orchard · Apple troubleshooting</title><link rel="stylesheet" href="style.css">
 <script src="search.js" defer></script></head>
 <body>
 <nav class="site-nav" aria-label="Site"><div class="site-nav-inner">
-<a class="brand" href="./">Orchard KB</a>
+<a class="brand" href="./">Orchard</a>
 <div class="nav-links"><a href="#browse">Browse</a><a href="contribute.html">Answer a thread</a></div>
 </div></nav>
 <main><header class="hero">
@@ -211,7 +211,7 @@ def page(body):
 <section id="browse" aria-labelledby="browse-title">
 <div class="section-heading"><h2 id="browse-title">Browse guides</h2><p id="count" role="status"></p></div>
 """ + body + """</section></main>
-<footer><div class="footer-inner">Orchard KB is an independent project. <a href="https://discussions.apple.com/">Original Apple Discussions</a></div></footer>
+<footer><div class="footer-inner">Orchard is an independent project. <a href="https://discussions.apple.com/">Original Apple Discussions</a></div></footer>
 </body></html>
 """
 

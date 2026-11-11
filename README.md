@@ -1,4 +1,4 @@
-# Orchard KB
+# Orchard
 
 An independent Apple troubleshooting knowledge base for GitHub Pages. The repository ships with five reviewed guides and a local importer. It has no live crawler, backend, API key, or Python dependencies.
 
@@ -40,4 +40,4 @@ Start by tracking selected threads by product, symptom and OS version. Prioritis
 
 ## Public contributions
 
-Readers can [submit an answer to an unresolved thread](https://paul-ej.dev/orchard-kb/contribute.html). The GitHub issue form records the original thread URL, device and OS, proposed fix, and supporting evidence. See `AGENTS.md` for review and publication.
+Readers can [submit an answer to an unresolved thread](https://paul-ej.dev/orchard/contribute.html). The GitHub issue form records the original thread URL, device and OS, proposed fix, and supporting evidence. See `AGENTS.md` for review and publication.

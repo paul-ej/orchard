@@ -1,4 +1,4 @@
-# Working with Orchard KB
+# Working with Orchard
 
 ## Find an answer
 
@@ -17,7 +17,7 @@
 
 ## Review answers submitted after capture
 
-- The public [contribution page](https://paul-ej.dev/orchard-kb/contribute.html) links to the GitHub issue form. A submission is a proposal. Never infer that the original poster tested or accepted it.
+- The public [contribution page](https://paul-ej.dev/orchard/contribute.html) links to the GitHub issue form. A submission is a proposal. Never infer that the original poster tested or accepted it.
 - Match the original URL or thread ID, confirm publication permission, and record the tested hardware, OS and outcome in `evidence_notes`. Prefer Apple Support corroboration when available. Otherwise require a reproducible result before presenting the answer as a reviewed fix. Leave unanswered or unverified proposals in the issue.
-- Keep the original Apple thread as a `community` source. Cite the new answer as a separate `contribution` source using its Orchard KB issue URL and record the review date. Preserve any existing archive link and distinguish the historical evidence from the later answer.
+- Keep the original Apple thread as a `community` source. Cite the new answer as a separate `contribution` source using its Orchard issue URL and record the review date. Preserve any existing archive link and distinguish the historical evidence from the later answer.
 - Link the published guide in the issue when closing it. Keep the issue open if further evidence is needed.

@@ -17,7 +17,7 @@ body:
   - type: input
     id: archive
     attributes:
-      label: Archived copy or Orchard KB guide
+      label: Archived copy or Orchard guide
       description: Link a copy of the same thread or the guide it informed, if you know of one.
   - type: textarea
     id: context
@@ -45,5 +45,5 @@ body:
     attributes:
       label: Publication permission
       options:
-        - label: I wrote this submission and give Orchard KB permission to edit and publish it with a link to this issue.
+        - label: I wrote this submission and give Orchard permission to edit and publish it with a link to this issue.
           required: true
