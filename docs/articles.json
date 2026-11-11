@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "articles": [
+    {
+      "id": "airpods-one-side-silent",
+      "status": "reviewed",
+      "title": "One AirPod is silent or quieter than the other",
+      "product": "AirPods",
+      "applies_to": "AirPods and AirPods Pro earbuds. Reset instructions depend on the model.",
+      "summary": "Check whether the affected earbud is charging, then test it on its own. A quiet earbud calls for a different check from one that never connects.",
+      "keywords": [
+        "left AirPod",
+        "right AirPod",
+        "no sound",
+        "charging case",
+        "balance",
+        "unresponsive"
+      ],
+      "steps": [
+        "Charge the case, put both earbuds inside and give them at least 30 seconds. Open the case near the paired iPhone or iPad and check the charging indicator for each earbud.",
+        "Leave the working earbud in the closed case and play audio with the affected earbud in your ear. If it plays normally, put both earbuds back in the case briefly and then retest them together.",
+        "For uneven volume, inspect the speaker mesh for debris and follow Apple’s cleaning instructions for your model. On iPhone or iPad, open Settings, then Accessibility, then Audio & Visual, and check that Balance is centred.",
+        "If the earbud still fails, follow the reset instructions for your specific model. If it remains unresponsive, contact Apple Support for assessment."
+      ],
+      "evidence_notes": "One thread reports an earbud that appeared charged in the case but disappeared after removal. A reset was suggested, with no confirmed result from the original poster.",
+      "reviewed_on": "2026-11-11",
+      "sources": [
+        {
+          "kind": "community",
+          "label": "Earbud disappears after removal from its case",
+          "url": "https://discussions.apple.com/thread/255002321"
+        },
+        {
+          "kind": "official",
+          "label": "Troubleshoot one AirPod",
+          "url": "https://support.apple.com/en-gb/100494"
+        },
+        {
+          "kind": "official",
+          "label": "Reset instructions by model",
+          "url": "https://support.apple.com/guide/airpods/restart-unpair-or-reset-airpods-iph561965261/web"
+        }
+      ]
+    },
+    {
+      "id": "icloud-photos-paused",
+      "status": "reviewed",
+      "title": "iCloud Photos sync is paused or photos are missing",
+      "product": "iCloud Photos",
+      "applies_to": "iPhone, iPad and Mac using iCloud Photos. Where Photos shows sync status varies by OS version.",
+      "summary": "Read the library status in Photos before changing sync settings. It can tell you whether Photos is waiting for power, network access or iCloud storage.",
+      "keywords": [
+        "iPhone",
+        "iPad",
+        "Mac",
+        "syncing paused",
+        "Low Power Mode",
+        "Low Data Mode",
+        "storage",
+        "Shared Library"
+      ],
+      "steps": [
+        "Find the library status in Photos. On newer iPhone and iPad versions, check the profile button in Collections. On Mac, open Library and scroll to the bottom of All Photos.",
+        "Follow the status message. For a pause associated with battery or network conditions, connect to power and Wi-Fi and let the device sync overnight.",
+        "Verify that your devices use the same Apple Account. If you use Shared Photo Library, check which library view is selected.",
+        "Keep iCloud Photos enabled while troubleshooting the pause."
+      ],
+      "evidence_notes": "The community reply includes a suggestion to toggle iCloud Photos. Apple advises keeping it enabled during sync troubleshooting. The steps here follow Apple’s guidance.",
+      "reviewed_on": "2026-11-11",
+      "sources": [
+        {
+          "kind": "community",
+          "label": "iPhone photos failing to sync to iCloud",
+          "url": "https://discussions.apple.com/thread/256204740"
+        },
+        {
+          "kind": "official",
+          "label": "Apple’s iCloud Photos sync troubleshooting",
+          "url": "https://support.apple.com/en-gb/101559"
+        }
+      ]
+    },
+    {
+      "id": "iphone-ipad-update-failed",
+      "status": "reviewed",
+      "title": "iPhone or iPad says Software Update Failed",
+      "product": "iPhone and iPad",
+      "applies_to": "Wireless iOS and iPadOS updates. The supported OS version depends on the device model.",
+      "summary": "Check compatibility, free space and network access before retrying. Note whether the failure happens while checking, downloading or installing.",
+      "keywords": [
+        "Software Update Failed",
+        "Requesting Update",
+        "Unable to Check for Update",
+        "unable to verify update",
+        "Wi-Fi",
+        "iPadOS",
+        "iOS"
+      ],
+      "steps": [
+        "Confirm that the target version supports your device. Check available space under Settings, General, then iPhone Storage or iPad Storage.",
+        "Connect to power and a reliable Wi-Fi network. If the download is slow, pause other large downloads.",
+        "For an update-server or verification error, retry on a different Wi-Fi network. If the wireless attempt still fails, use the computer-based update procedure linked in Apple’s guide."
+      ],
+      "evidence_notes": "The forum report describes an update that stalled at the request stage. A reply suggested Wi-Fi, but the original poster did not confirm that it fixed the issue.",
+      "reviewed_on": "2026-11-11",
+      "sources": [
+        {
+          "kind": "community",
+          "label": "Update request stalls on an iPhone",
+          "url": "https://discussions.apple.com/thread/256360950"
+        },
+        {
+          "kind": "official",
+          "label": "Wireless iPhone and iPad update troubleshooting",
+          "url": "https://support.apple.com/en-ie/108905"
+        }
+      ]
+    },
+    {
+      "id": "mac-external-display",
+      "status": "reviewed",
+      "title": "Mac external display is blank or shows the wrong resolution",
+      "product": "Mac",
+      "applies_to": "Mac computers using external displays. The accessory prompt applies to Mac laptops with Apple silicon. Display limits vary by model.",
+      "summary": "Check the display connection without a dock or hub first. This helps narrow down whether an adapter is limiting the signal.",
+      "keywords": [
+        "macOS",
+        "monitor",
+        "black screen",
+        "black borders",
+        "HDMI",
+        "USB-C",
+        "refresh rate"
+      ],
+      "steps": [
+        "Check the monitor’s power and reconnect the video cable at both ends. If you use a dock or hub, try a direct connection to the Mac.",
+        "Compare the resolution and refresh rate you want with the limits of the Mac, cable and adapter. If you use multiple screens, check the Mac’s supported display count.",
+        "On an Apple silicon Mac laptop, unlock the Mac and approve the display if macOS prompts you. If you use the laptop with the lid closed, connect power and an external keyboard and mouse.",
+        "If the display still isn’t detected, open Displays in System Settings and hold Option to reveal Detect Displays."
+      ],
+      "evidence_notes": "The community thread concerns black borders with one adapter. It illustrates why the adapter matters. Apple’s documentation provides the general steps above.",
+      "reviewed_on": "2026-11-11",
+      "sources": [
+        {
+          "kind": "community",
+          "label": "Black borders around a second monitor",
+          "url": "https://discussions.apple.com/thread/253164152"
+        },
+        {
+          "kind": "official",
+          "label": "External display troubleshooting",
+          "url": "https://support.apple.com/en-us/102501"
+        },
+        {
+          "kind": "official",
+          "label": "Allow accessories to connect",
+          "url": "https://support.apple.com/en-gb/102282"
+        }
+      ]
+    },
+    {
+      "id": "mac-time-machine-network-disk",
+      "status": "reviewed",
+      "title": "Time Machine can’t use a network backup disk",
+      "product": "Mac",
+      "applies_to": "Macs backing up to a NAS or another Mac. Apple documents that AFP backup destinations are unsupported in macOS 27 and later.",
+      "summary": "Check whether the destination provides Time Machine over SMB. A NAS drive’s internal file system and the protocol macOS uses to reach it are separate settings.",
+      "keywords": [
+        "Time Machine",
+        "NAS",
+        "AFP",
+        "SMB",
+        "Samba",
+        "backup destination",
+        "Time Capsule",
+        "ext4"
+      ],
+      "steps": [
+        "For a NAS, check the manufacturer’s documentation for Time Machine over SMB and enable that feature for the intended share.",
+        "For another Mac running macOS Ventura or later, open System Settings, then General, then Sharing. Open File Sharing options and mark the intended folder as a Time Machine backup destination.",
+        "On the Mac being backed up, open System Settings, then General, then Time Machine. Add the supported destination and confirm that the first backup completes.",
+        "If the existing destination uses AFP, retain the old backups while setting up an SMB destination or a directly connected disk. Verify the new backup before changing the old disk."
+      ],
+      "evidence_notes": "The discussion explains the distinction between a NAS file system and its network protocol. It does not establish that a particular Raspberry Pi or Samba configuration supports Time Machine.",
+      "reviewed_on": "2026-11-11",
+      "sources": [
+        {
+          "kind": "community",
+          "label": "NAS disk format and network protocol discussion",
+          "url": "https://discussions.apple.com/thread/256135674"
+        },
+        {
+          "kind": "official",
+          "label": "Supported Time Machine destinations",
+          "url": "https://support.apple.com/en-ie/102423"
+        },
+        {
+          "kind": "official",
+          "label": "Set up and use Time Machine",
+          "url": "https://support.apple.com/en-gb/guide/mac-help/mh35860/mac"
+        }
+      ]
+    }
+  ]
+}

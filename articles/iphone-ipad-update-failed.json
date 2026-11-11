@@ -1,0 +1,36 @@
+{
+  "id": "iphone-ipad-update-failed",
+  "status": "reviewed",
+  "title": "iPhone or iPad says Software Update Failed",
+  "product": "iPhone and iPad",
+  "applies_to": "Wireless iOS and iPadOS updates. The supported OS version depends on the device model.",
+  "summary": "Check compatibility, free space and network access before retrying. Note whether the failure happens while checking, downloading or installing.",
+  "keywords": [
+    "Software Update Failed",
+    "Requesting Update",
+    "Unable to Check for Update",
+    "unable to verify update",
+    "Wi-Fi",
+    "iPadOS",
+    "iOS"
+  ],
+  "steps": [
+    "Confirm that the target version supports your device. Check available space under Settings, General, then iPhone Storage or iPad Storage.",
+    "Connect to power and a reliable Wi-Fi network. If the download is slow, pause other large downloads.",
+    "For an update-server or verification error, retry on a different Wi-Fi network. If the wireless attempt still fails, use the computer-based update procedure linked in Apple’s guide."
+  ],
+  "evidence_notes": "The forum report describes an update that stalled at the request stage. A reply suggested Wi-Fi, but the original poster did not confirm that it fixed the issue.",
+  "reviewed_on": "2026-11-11",
+  "sources": [
+    {
+      "kind": "community",
+      "label": "Update request stalls on an iPhone",
+      "url": "https://discussions.apple.com/thread/256360950"
+    },
+    {
+      "kind": "official",
+      "label": "Wireless iPhone and iPad update troubleshooting",
+      "url": "https://support.apple.com/en-ie/108905"
+    }
+  ]
+}

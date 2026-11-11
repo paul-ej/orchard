@@ -1,0 +1,41 @@
+{
+  "id": "airpods-one-side-silent",
+  "status": "reviewed",
+  "title": "One AirPod is silent or quieter than the other",
+  "product": "AirPods",
+  "applies_to": "AirPods and AirPods Pro earbuds. Reset instructions depend on the model.",
+  "summary": "Check whether the affected earbud is charging, then test it on its own. A quiet earbud calls for a different check from one that never connects.",
+  "keywords": [
+    "left AirPod",
+    "right AirPod",
+    "no sound",
+    "charging case",
+    "balance",
+    "unresponsive"
+  ],
+  "steps": [
+    "Charge the case, put both earbuds inside and give them at least 30 seconds. Open the case near the paired iPhone or iPad and check the charging indicator for each earbud.",
+    "Leave the working earbud in the closed case and play audio with the affected earbud in your ear. If it plays normally, put both earbuds back in the case briefly and then retest them together.",
+    "For uneven volume, inspect the speaker mesh for debris and follow Apple’s cleaning instructions for your model. On iPhone or iPad, open Settings, then Accessibility, then Audio & Visual, and check that Balance is centred.",
+    "If the earbud still fails, follow the reset instructions for your specific model. If it remains unresponsive, contact Apple Support for assessment."
+  ],
+  "evidence_notes": "One thread reports an earbud that appeared charged in the case but disappeared after removal. A reset was suggested, with no confirmed result from the original poster.",
+  "reviewed_on": "2026-11-11",
+  "sources": [
+    {
+      "kind": "community",
+      "label": "Earbud disappears after removal from its case",
+      "url": "https://discussions.apple.com/thread/255002321"
+    },
+    {
+      "kind": "official",
+      "label": "Troubleshoot one AirPod",
+      "url": "https://support.apple.com/en-gb/100494"
+    },
+    {
+      "kind": "official",
+      "label": "Reset instructions by model",
+      "url": "https://support.apple.com/guide/airpods/restart-unpair-or-reset-airpods-iph561965261/web"
+    }
+  ]
+}

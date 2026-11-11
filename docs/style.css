@@ -1,0 +1,15 @@
+:root { color-scheme: light dark; font: 17px/1.6 system-ui, sans-serif; }
+body { margin: 0; background: light-dark(#f4f6f2, #111712); color: light-dark(#17221a, #e8eee9); }
+main { max-width: 48rem; margin: auto; padding: clamp(1rem, 5vw, 3rem); }
+header { margin-bottom: 2rem; }
+h1, h2 { line-height: 1.15; letter-spacing: -.025em; }
+h1 { margin: .35rem 0; font-size: clamp(2.3rem, 7vw, 4rem); }
+h2 { margin: .25rem 0 .65rem; }
+a { color: light-dark(#205d3b, #a8e5bc); }
+.brand, .meta { font-weight: 650; color: light-dark(#39654a, #a8e5bc); }
+.meta, .scope, .sources, #count { font-size: .9rem; }
+label { display: block; font-weight: 600; margin-top: 1.5rem; }
+input { box-sizing: border-box; width: 100%; font: inherit; padding: .7rem 1rem; border-radius: .5rem; border: 1px solid light-dark(#6f8273, #8aa594); }
+article { background: light-dark(#fff, #1b241d); border: 1px solid light-dark(#d3ded4, #35473a); padding: 1rem 1.5rem; border-radius: 1rem; margin-bottom: 1rem; scroll-margin-top: 1rem; }
+li + li { margin-top: .35rem; }
+.sources { padding-left: 1.25rem; }

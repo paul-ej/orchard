@@ -1,0 +1,21 @@
+{
+  "id": "icloud-photos-paused",
+  "status": "reviewed",
+  "title": "iCloud Photos sync is paused or photos are missing",
+  "product": "iCloud Photos",
+  "applies_to": "iPhone, iPad and Mac using iCloud Photos. Where Photos shows sync status varies by OS version.",
+  "summary": "Read the library status in Photos before changing sync settings. It can tell you whether Photos is waiting for power, network access or iCloud storage.",
+  "keywords": ["iPhone", "iPad", "Mac", "syncing paused", "Low Power Mode", "Low Data Mode", "storage", "Shared Library"],
+  "steps": [
+    "Find the library status in Photos. On newer iPhone and iPad versions, check the profile button in Collections. On Mac, open Library and scroll to the bottom of All Photos.",
+    "Follow the status message. For a pause associated with battery or network conditions, connect to power and Wi-Fi and let the device sync overnight.",
+    "Verify that your devices use the same Apple Account. If you use Shared Photo Library, check which library view is selected.",
+    "Keep iCloud Photos enabled while troubleshooting the pause."
+  ],
+  "evidence_notes": "The community reply includes a suggestion to toggle iCloud Photos. Apple advises keeping it enabled during sync troubleshooting. The steps here follow Apple’s guidance.",
+  "reviewed_on": "2026-11-11",
+  "sources": [
+    {"kind": "community", "label": "iPhone photos failing to sync to iCloud", "url": "https://discussions.apple.com/thread/256204740"},
+    {"kind": "official", "label": "Apple’s iCloud Photos sync troubleshooting", "url": "https://support.apple.com/en-gb/101559"}
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "mac-time-machine-network-disk",
+  "status": "reviewed",
+  "title": "Time Machine can’t use a network backup disk",
+  "product": "Mac",
+  "applies_to": "Macs backing up to a NAS or another Mac. Apple documents that AFP backup destinations are unsupported in macOS 27 and later.",
+  "summary": "Check whether the destination provides Time Machine over SMB. A NAS drive’s internal file system and the protocol macOS uses to reach it are separate settings.",
+  "keywords": [
+    "Time Machine",
+    "NAS",
+    "AFP",
+    "SMB",
+    "Samba",
+    "backup destination",
+    "Time Capsule",
+    "ext4"
+  ],
+  "steps": [
+    "For a NAS, check the manufacturer’s documentation for Time Machine over SMB and enable that feature for the intended share.",
+    "For another Mac running macOS Ventura or later, open System Settings, then General, then Sharing. Open File Sharing options and mark the intended folder as a Time Machine backup destination.",
+    "On the Mac being backed up, open System Settings, then General, then Time Machine. Add the supported destination and confirm that the first backup completes.",
+    "If the existing destination uses AFP, retain the old backups while setting up an SMB destination or a directly connected disk. Verify the new backup before changing the old disk."
+  ],
+  "evidence_notes": "The discussion explains the distinction between a NAS file system and its network protocol. It does not establish that a particular Raspberry Pi or Samba configuration supports Time Machine.",
+  "reviewed_on": "2026-11-11",
+  "sources": [
+    {
+      "kind": "community",
+      "label": "NAS disk format and network protocol discussion",
+      "url": "https://discussions.apple.com/thread/256135674"
+    },
+    {
+      "kind": "official",
+      "label": "Supported Time Machine destinations",
+      "url": "https://support.apple.com/en-ie/102423"
+    },
+    {
+      "kind": "official",
+      "label": "Set up and use Time Machine",
+      "url": "https://support.apple.com/en-gb/guide/mac-help/mh35860/mac"
+    }
+  ]
+}
