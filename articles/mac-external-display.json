@@ -5,7 +5,15 @@
   "product": "Mac",
   "applies_to": "Mac computers using external displays. The accessory prompt applies to Mac laptops with Apple silicon. Display limits vary by model.",
   "summary": "Check the display connection without a dock or hub first. This helps narrow down whether an adapter is limiting the signal.",
-  "keywords": ["macOS", "monitor", "black screen", "black borders", "HDMI", "USB-C", "refresh rate"],
+  "keywords": [
+    "macOS",
+    "monitor",
+    "black screen",
+    "black borders",
+    "HDMI",
+    "USB-C",
+    "refresh rate"
+  ],
   "steps": [
     "Check the monitor’s power and reconnect the video cable at both ends. If you use a dock or hub, try a direct connection to the Mac.",
     "Compare the resolution and refresh rate you want with the limits of the Mac, cable and adapter. If you use multiple screens, check the Mac’s supported display count.",
@@ -15,8 +23,21 @@
   "evidence_notes": "The community thread concerns black borders with one adapter. It illustrates why the adapter matters. Apple’s documentation provides the general steps above.",
   "reviewed_on": "2026-11-11",
   "sources": [
-    {"kind": "community", "label": "Black borders around a second monitor", "url": "https://discussions.apple.com/thread/253164152"},
-    {"kind": "official", "label": "External display troubleshooting", "url": "https://support.apple.com/en-us/102501"},
-    {"kind": "official", "label": "Allow accessories to connect", "url": "https://support.apple.com/en-gb/102282"}
+    {
+      "kind": "community",
+      "label": "Black borders around a second monitor",
+      "url": "https://discussions.apple.com/thread/253164152",
+      "archive_url": "https://web.archive.org/web/20230906090618/https://discussions.apple.com/thread/253164152"
+    },
+    {
+      "kind": "official",
+      "label": "External display troubleshooting",
+      "url": "https://support.apple.com/en-us/102501"
+    },
+    {
+      "kind": "official",
+      "label": "Allow accessories to connect",
+      "url": "https://support.apple.com/en-gb/102282"
+    }
   ]
 }

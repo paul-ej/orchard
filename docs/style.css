@@ -13,3 +13,4 @@ input { box-sizing: border-box; width: 100%; font: inherit; padding: .7rem 1rem;
 article { background: light-dark(#fff, #1b241d); border: 1px solid light-dark(#d3ded4, #35473a); padding: 1rem 1.5rem; border-radius: 1rem; margin-bottom: 1rem; scroll-margin-top: 1rem; }
 li + li { margin-top: .35rem; }
 .sources { padding-left: 1.25rem; }
+.button { display: inline-block; padding: .55rem .85rem; border: 1px solid currentColor; border-radius: .5rem; font-weight: 650; }

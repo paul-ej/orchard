@@ -1,0 +1,49 @@
+name: Answer an Apple Discussions thread
+description: Share an original answer or follow-up for a thread on discussions.apple.com.
+title: "[Answer] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This submission is public. Use your own words and remove account details, serial numbers, credentials, and personal information from any examples or logs.
+  - type: input
+    id: original-thread
+    attributes:
+      label: Original Apple Discussions thread
+      description: Enter the original discussions.apple.com/thread URL, even if the link has stopped working.
+      placeholder: https://discussions.apple.com/thread/123456789
+    validations:
+      required: true
+  - type: input
+    id: archive
+    attributes:
+      label: Archived copy or Orchard KB guide
+      description: Link a copy of the same thread or the guide it informed, if you know of one.
+  - type: textarea
+    id: context
+    attributes:
+      label: Symptom and environment
+      description: Summarise the question in your own words and give the device, OS version and any relevant app or accessory details.
+    validations:
+      required: true
+  - type: textarea
+    id: answer
+    attributes:
+      label: Proposed answer
+      description: Describe the steps, the expected result and any limitations. Flag actions that can affect files, backups or security settings.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: What supports this answer?
+      description: Describe what you tested and what happened, or link supporting sources. If you haven't tested it, say so.
+    validations:
+      required: true
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Publication permission
+      options:
+        - label: I wrote this submission and give Orchard KB permission to edit and publish it with a link to this issue.
+          required: true

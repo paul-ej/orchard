@@ -14,3 +14,10 @@
 - In the queue, `topics` maps topic slugs to thread lists. Each thread has a canonical `url` and `snapshots` keyed by content hash. Each snapshot records capture dates, title, question and answers with acceptance flags. Different hashes are different observed versions of a thread. Several versions or replies in one thread do not establish independent confirmation.
 - Update the existing guide for the same issue. Write original steps, corroborate them, preserve provenance, and date the review. Describe disagreements and avoid publishing destructive advice based on anecdote.
 - Run `python3 kb.py build` after any article change and verify the result with `python3 kb.py search '<symptom>'`. Commit reviewed content and the generated site together. Keep manifests, raw HTML and the review queue outside `docs/` and out of commits.
+
+## Review answers submitted after capture
+
+- The public [contribution page](https://paul-ej.dev/orchard-kb/contribute.html) links to the GitHub issue form. A submission is a proposal. Never infer that the original poster tested or accepted it.
+- Match the original URL or thread ID, confirm publication permission, and record the tested hardware, OS and outcome in `evidence_notes`. Prefer Apple Support corroboration when available. Otherwise require a reproducible result before presenting the answer as a reviewed fix. Leave unanswered or unverified proposals in the issue.
+- Keep the original Apple thread as a `community` source. Cite the new answer as a separate `contribution` source using its Orchard KB issue URL and record the review date. Preserve any existing archive link and distinguish the historical evidence from the later answer.
+- Link the published guide in the issue when closing it. Keep the issue open if further evidence is needed.

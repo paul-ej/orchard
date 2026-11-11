@@ -37,3 +37,7 @@ For a local HTML export, replace those text fields with `html`, a path relative 
 ### Coverage
 
 Start by tracking selected threads by product, symptom and OS version. Prioritise issues that recur across threads, then distinguish confirmed fixes, historical workarounds and unresolved reports. Add original guides incrementally and link archive snapshots only when the exact snapshot and its accessibility have been checked. The starter does not infer completeness from the number of imported records and does not generate public advice automatically.
+
+## Public contributions
+
+Readers can [submit an answer to an unresolved thread](https://paul-ej.dev/orchard-kb/contribute.html). The GitHub issue form records the original thread URL, device and OS, proposed fix, and supporting evidence. See `AGENTS.md` for review and publication.

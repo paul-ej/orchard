@@ -12,6 +12,12 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent
 THREAD = re.compile(r"/thread/(\d+)/?")
+CONTRIBUTION = re.compile(r"https://github\.com/paul-ej/orchard-kb/issues/[1-9][0-9]*")
+SOURCE_LABELS = {
+    "community": "Community",
+    "official": "Official",
+    "contribution": "Orchard KB contribution",
+}
 
 
 def thread_url(value):
@@ -158,12 +164,14 @@ def reviewed():
             ):
                 raise ValueError(f"Invalid {key} in {path.name}")
         kinds = {source["kind"] for source in article["sources"]}
-        if not {"community", "official"} <= kinds:
-            raise ValueError(f"Community and official references required in {path.name}")
+        if "community" not in kinds or not kinds.intersection({"official", "contribution"}):
+            raise ValueError(f"An original thread and official or contribution evidence are required in {path.name}")
         for source in article["sources"]:
             public_url(source["url"])
             if source["kind"] == "community":
                 thread_url(source["url"])
+            if source["kind"] == "contribution" and not CONTRIBUTION.fullmatch(source["url"]):
+                raise ValueError(f"Expected an Orchard KB contribution issue URL in {path.name}")
             if source.get("archive_url"):
                 public_url(source["archive_url"])
         public_fields = ("id", "status", "title", "product", "applies_to", "summary",
@@ -191,6 +199,7 @@ def page(body):
 <body><main><header><p class="brand">Orchard KB</p>
 <h1>Apple troubleshooting</h1>
 <p>Independent guides based on community reports and Apple Support documentation.</p>
+<nav aria-label="Site"><a href="contribute.html">Answer an open thread</a></nav>
 <label for="query">Search by symptom, product or error</label>
 <input id="query" type="search" placeholder="Try ‘external display’" autocomplete="off">
 <p id="count" role="status"></p></header>
@@ -203,7 +212,8 @@ def card(article):
         link = f'<a href="{escape(source["url"])}">{escape(source["label"])}</a>'
         if source.get("archive_url"):
             link += f' · <a href="{escape(source["archive_url"])}">Archived copy</a>'
-        links.append(f'<li>{escape(source["kind"].capitalize())} · {link}</li>')
+        label = SOURCE_LABELS.get(source["kind"], source["kind"].capitalize())
+        links.append(f'<li>{escape(label)} · {link}</li>')
     steps = "".join(f"<li>{escape(step)}</li>" for step in article["steps"])
     return f"""<article id="{article['id']}" data-search="{escape(search_text(article))}">
 <p class="meta">{escape(article['product'])} · Reviewed {escape(article['reviewed_on'])}</p>
